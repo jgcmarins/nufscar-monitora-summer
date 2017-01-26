@@ -11,8 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".main.json.EventosJSONActivity" />
-
         <activity
             android:name=".view.BaseActivity"
             android:label="@string/title_activity_base"
@@ -26,6 +24,11 @@
 
 
         </activity>
+
+        <activity android:name=".view.EventsDetailsActivity"></activity>
+        <activity android:name=".view.NewsDetailsActivity"></activity>
+
+
     </application>
 
 </manifest>
