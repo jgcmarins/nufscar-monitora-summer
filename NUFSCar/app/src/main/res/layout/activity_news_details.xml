@@ -39,7 +39,6 @@
             android:id="@+id/news_details_image"
             android:layout_below="@id/news_details_title"
             android:layout_marginTop="40dp"
-            android:src="@drawable/maxresdefault"
             android:maxWidth="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
