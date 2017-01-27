@@ -20,4 +20,17 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/summer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/summer"/>
+
+    <ImageView
+        android:id="@+id/monitora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/monitora"
+        android:layout_below="@+id/summer"/>
+
 </RelativeLayout>

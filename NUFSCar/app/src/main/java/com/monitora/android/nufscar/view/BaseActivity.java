@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.monitora.android.nufscar.R;
 import com.monitora.android.nufscar.view.fragment.EventsFragment;
@@ -88,16 +89,23 @@ public class BaseActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        ImageView summer = (ImageView) findViewById(R.id.summer);
+        ImageView monitora = (ImageView) findViewById(R.id.monitora);
+
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_news_feed) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new NewsFeedFragment())
                     .commit();
+            summer.setVisibility(View.INVISIBLE);
+            monitora.setVisibility(View.INVISIBLE);
         } else if (id == R.id.nav_events) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new EventsFragment())
                     .commit();
+            summer.setVisibility(View.INVISIBLE);
+            monitora.setVisibility(View.INVISIBLE);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
