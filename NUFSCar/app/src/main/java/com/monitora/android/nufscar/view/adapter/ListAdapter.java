@@ -19,9 +19,9 @@ import java.util.List;
 
 public class ListAdapter extends BaseAdapter {
 
-    private List<HashMap<String, String>> mAndroidMapList;
+    private List<News> mAndroidMapList;
 
-    public ListAdapter(List<HashMap<String, String>> mAndroidMapList) {
+    public ListAdapter(List<News> mAndroidMapList) {
         this.mAndroidMapList = mAndroidMapList;
     }
 
@@ -31,7 +31,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public News getItem(int position) {
         return mAndroidMapList.get(position);
     }
 
@@ -45,11 +45,11 @@ public class ListAdapter extends BaseAdapter {
         View viewInflater = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.list_item, parent, false);
 
-        HashMap<String, String> news = this.mAndroidMapList.get(position);
+        News news = this.mAndroidMapList.get(position);
 
         ContentViewHolder contentViewHolder = new ContentViewHolder(viewInflater);
-        contentViewHolder.newsDate.setText(news.get(NewsFeedFragment.KEY_DATA));
-        contentViewHolder.newsTitle.setText(news.get(NewsFeedFragment.KEY_TITULO));
+        contentViewHolder.newsDate.setText(news.getData());
+        contentViewHolder.newsTitle.setText(news.getTitulo());
         return viewInflater;
     }
 

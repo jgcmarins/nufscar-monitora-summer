@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.monitora.android.nufscar.R;
+import com.monitora.android.nufscar.model.Eventos;
 import com.monitora.android.nufscar.view.fragment.EventsFragment;
 ;
 
@@ -17,9 +18,9 @@ import java.util.List;
 
 public class EventsListAdapter extends BaseAdapter {
 
-    private List<HashMap<String, String>> mAndroidMapList;
+    private List<Eventos> mAndroidMapList;
 
-    public EventsListAdapter(List<HashMap<String, String>> mAndroidMapList) {
+    public EventsListAdapter(List<Eventos> mAndroidMapList) {
         this.mAndroidMapList = mAndroidMapList;
     }
 
@@ -29,7 +30,7 @@ public class EventsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Eventos getItem(int position) {
         return mAndroidMapList.get(position);
     }
 
@@ -43,11 +44,11 @@ public class EventsListAdapter extends BaseAdapter {
         View viewInflater = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.list_item, parent, false);
 
-        HashMap<String, String> events = this.mAndroidMapList.get(position);
+        Eventos events = this.mAndroidMapList.get(position);
 
         ContentViewHolder contentViewHolder = new ContentViewHolder(viewInflater);
-        contentViewHolder.newsDate.setText(events.get(EventsFragment.KEY_DATA));
-        contentViewHolder.newsTitle.setText(events.get(EventsFragment.KEY_TITULO));
+        contentViewHolder.newsDate.setText(events.getData());
+        contentViewHolder.newsTitle.setText(events.getTitulo());
         return viewInflater;
     }
 

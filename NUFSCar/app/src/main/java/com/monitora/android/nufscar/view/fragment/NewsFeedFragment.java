@@ -1,6 +1,7 @@
 package com.monitora.android.nufscar.view.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,9 +14,11 @@ import android.widget.Toast;
 import com.monitora.android.nufscar.R;
 import com.monitora.android.nufscar.main.json.LoadJSONNoticias;
 import com.monitora.android.nufscar.model.News;
+import com.monitora.android.nufscar.view.NewsDetailsActivity;
 import com.monitora.android.nufscar.view.adapter.ListAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +28,7 @@ import java.util.List;
 
 public class NewsFeedFragment extends Fragment implements LoadJSONNoticias.Listener, AdapterView.OnItemClickListener {
     private View newsFeedView;
-    private List<HashMap<String, String>> mAndroidMapList;
+    private List<News> mAndroidMapList;
 
     public static final String URL = "https://ufscar-monitora.firebaseio.com/.json";
 
@@ -44,32 +47,37 @@ public class NewsFeedFragment extends Fragment implements LoadJSONNoticias.Liste
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.newsFeedView = inflater.inflate(R.layout.news_feed_layout, container, false);
-        mAndroidMapList = new ArrayList<>();
+        mAndroidMapList = new ArrayList<News>();
 
         new LoadJSONNoticias(this).execute(URL);
 
         return this.newsFeedView;
     }
 
+
     @Override
     public void onLoaded(List<News> androidList) {
         for (News android : androidList) {
 
-            HashMap<String, String> map = new HashMap<>();
 
-            map.put(KEY_AUTOR, android.getAutor());
-            map.put(KEY_DATA, android.getData());
-            map.put(KEY_FIGCAPTION, android.getFigcaption());
-            map.put(KEY_IDNOTICIA, android.getIdNoticia());
-            map.put(KEY_IMG, android.getImg_src());
-            map.put(KEY_TEXTO, android.getTexo());
-            map.put(KEY_TITULO, android.getTitulo());
-            map.put(KEY_URL, android.getUrl());
-
-            mAndroidMapList.add(map);
+            mAndroidMapList.add(android);
         }
 
-        loadListView();
+        ListView listView = loadListView();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                News news = (News) parent.getItemAtPosition(position);
+                Intent intent = new Intent(view.getContext(), NewsDetailsActivity.class);
+                intent.putExtra(KEY_IDNOTICIA,news);
+                startActivity(intent);
+
+
+            }
+        });
+
     }
 
     @Override
@@ -77,15 +85,9 @@ public class NewsFeedFragment extends Fragment implements LoadJSONNoticias.Liste
         //Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-       // Toast.makeText(this, mAndroidMapList.get(i).get(KEY_TITULO),Toast.LENGTH_LONG).show();
 
 
-    }
-
-    private void loadListView() {
+    private ListView  loadListView() {
 
         /*ListAdapter adapter = new SimpleAdapter(NewsFeedFragment.this, mAndroidMapList, R.layout.list_item,
                 new String[] {  KEY_TITULO, KEY_IMG, KEY_IDNOTICIA },
@@ -96,6 +98,12 @@ public class NewsFeedFragment extends Fragment implements LoadJSONNoticias.Liste
         ListView newsFeedListView = (ListView) this.newsFeedView.findViewById(R.id.list_view_news_feed);
         ListAdapter listAdapter = new ListAdapter(this.mAndroidMapList);
         newsFeedListView.setAdapter(listAdapter);
+
+        return newsFeedListView;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

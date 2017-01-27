@@ -21,6 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -31,6 +32,7 @@
             android:layout_below="@id/news_details_title"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content" />
 
 
@@ -50,7 +52,7 @@
             android:layout_below="@id/news_details_image"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="1000dp" />
+            android:layout_height="wrap_content" />
 
         <RadioButton
             android:id="@+id/news_details_radio_button"

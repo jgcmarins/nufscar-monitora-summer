@@ -1,10 +1,12 @@
 package com.monitora.android.nufscar.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Murilo on 25/01/2017.
  */
 
-public class News {
+public class News implements Serializable {
 
     private String autor;
     private String data;
@@ -35,7 +37,7 @@ public class News {
         return image_src;
     }
 
-    public String getTexo() {
+    public String getTexto() {
         return texto;
     }
 
