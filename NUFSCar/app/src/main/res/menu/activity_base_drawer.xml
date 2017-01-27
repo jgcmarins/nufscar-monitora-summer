@@ -4,33 +4,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_news_feed"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="?android:attr/actionModePasteDrawable"
             android:title="Noticias" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@android:drawable/ic_menu_agenda"
             android:title="Eventos" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@android:drawable/btn_star"
             android:title="Favoritos" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@android:drawable/ic_menu_today"
             android:title="Calendario" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="?android:attr/fingerprintAuthDrawable"
+            android:title="Sobre"
+            />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+
 
 </menu>
